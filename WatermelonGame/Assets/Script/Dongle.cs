@@ -5,31 +5,58 @@ using UnityEngine;
 public class Dongle : MonoBehaviour
 {
     public GameManager manager;
+    public ParticleSystem effect;
+
     public int level;
     public bool isDrag;
     public bool isMerge;
+    public bool isAttach;
 
-    Rigidbody2D rigid;
+    public Rigidbody2D rigid;
     CircleCollider2D circle;
     Animator anim;
+    SpriteRenderer spriteRenderer;
+
+    float deadTime;
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         circle = GetComponent<CircleCollider2D>();
         anim = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void OnEnable()
     {
         anim.SetInteger("Level", level);
     }
+
+    void OnDisable()
+    {
+        //동글 초기화
+        level = 0;
+        isDrag = false;
+        isMerge = false;
+        isAttach = false;
+
+        //동글 트랜스폼 초기화
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
+        transform.localScale = Vector3.zero;
+
+        //동글 물리 초기화
+        rigid.simulated = false;
+        rigid.velocity = Vector2.zero;
+        rigid.angularVelocity = 0;
+        circle.enabled = true;
+    }
     void Update()
     {
         if (isDrag){
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            float leftBorder = -4.65f + transform.localScale.x / 2f;
-            float rightBorder = 4.65f - transform.localScale.x / 2f;
+            float leftBorder = -4.05f + transform.localScale.x / 2f;
+            float rightBorder = 4.05f - transform.localScale.x / 2f;
 
             if (mousePos.x < leftBorder)
             {
@@ -56,13 +83,31 @@ public class Dongle : MonoBehaviour
         isDrag = false;
         rigid.simulated = true;
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        StartCoroutine("AttachRoutine");
+    }
+
+    IEnumerator AttachRoutine()
+    {
+        if (isAttach)
+        {
+            yield break;
+        }
+
+        isAttach = true;
+        manager.SfxPlay(GameManager.Sfx.Attach);
+        yield return new WaitForSeconds(0.2f);
+        isAttach = false;
+    }
     private void OnCollisionStay2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Dongle")
         {
             Dongle other = collision.gameObject.GetComponent<Dongle>();
 
-            if(level == other.level && !isMerge && !other.isMerge && level < 7)
+            if (level == other.level && !isMerge && !other.isMerge && level < 7)
             {
                 //나와 상대편 위치 가져오기
                 float meX = transform.position.x;
@@ -80,6 +125,25 @@ public class Dongle : MonoBehaviour
                     LevelUp();
                 }
             }
+            else if (level == other.level && !isMerge && !other.isMerge && level == 7)
+            {
+                //나와 상대편 위치 가져오기
+                float meX = transform.position.x;
+                float meY = transform.position.y;
+                float otherX = other.transform.position.x;
+                float otherY = other.transform.position.y;
+
+                //내가 아래에 있을 때
+                //동일한 높이일때, 내가 오른쪽에 있을 때
+                if (meY < otherY || (meY == otherY && meX > otherX))
+                {
+                    // 둘 다 숨김
+                    other.Hide(transform.position);
+                    Hide(transform.position);
+                    manager.score += (int)Mathf.Pow(2, 7);
+                    EffectPlay();
+                }
+            }
         }
     }
 
@@ -90,6 +154,10 @@ public class Dongle : MonoBehaviour
         rigid.simulated = false;
         circle.enabled = false;
 
+        if(targetPos == Vector3.up * 100)
+        {
+            EffectPlay();
+        }
         StartCoroutine(HideRoutine(targetPos));
     }
 
@@ -100,9 +168,20 @@ public class Dongle : MonoBehaviour
         while(frameCount < 20)
         {
             frameCount++;
-            transform.position = Vector3.Lerp(transform.position, targetPos, 0.5f);
+            if(targetPos != Vector3.up * 100)
+            {
+                transform.position = Vector3.Lerp(transform.position, targetPos, 0.5f);
+            }
+            else if(targetPos == Vector3.up * 100)
+            {
+                transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, 0.2f);
+            }
+            
             yield return null;
         }
+
+        //점수 추가
+        manager.score += (int)Mathf.Pow(2, level);
 
         isMerge = false;
         gameObject.SetActive(false);
@@ -123,6 +202,8 @@ public class Dongle : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
 
         anim.SetInteger("Level", level + 1);
+        EffectPlay();
+        manager.SfxPlay(GameManager.Sfx.LevelUp);
 
         yield return new WaitForSeconds(0.3f);
         level++;
@@ -130,5 +211,37 @@ public class Dongle : MonoBehaviour
         manager.maxLevel = Mathf.Max(level, manager.maxLevel);
 
         isMerge = false;
+    }
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.tag == "Finish")
+        {
+            deadTime += Time.deltaTime;
+
+            if(deadTime > 2)
+            {
+                spriteRenderer.color = new Color(0.9f, 0.2f, 0.2f);
+            }
+            if (deadTime > 5)
+            {
+                manager.GameOver();
+            }
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.tag == "Finish")
+        {
+            deadTime = 0;
+            spriteRenderer.color = Color.white;
+        }
+    }
+    public void EffectPlay()
+    {
+        effect.transform.position = transform.position;
+        effect.transform.localScale = transform.localScale;
+        effect.Play();
     }
 }
