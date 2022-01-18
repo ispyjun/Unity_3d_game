@@ -817,6 +817,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 883724508928496280, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
   m_PrefabInstance: {fileID: 927449862}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &497127757
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4878447745913911896, guid: 87ecfdb15ed7328499f20d1de328ee37, type: 3}
+      propertyPath: m_Name
+      value: Weapon Grenade
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258069990102311138, guid: 87ecfdb15ed7328499f20d1de328ee37, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258069990102311138, guid: 87ecfdb15ed7328499f20d1de328ee37, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258069990102311138, guid: 87ecfdb15ed7328499f20d1de328ee37, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258069990102311138, guid: 87ecfdb15ed7328499f20d1de328ee37, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258069990102311138, guid: 87ecfdb15ed7328499f20d1de328ee37, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258069990102311138, guid: 87ecfdb15ed7328499f20d1de328ee37, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258069990102311138, guid: 87ecfdb15ed7328499f20d1de328ee37, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258069990102311138, guid: 87ecfdb15ed7328499f20d1de328ee37, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258069990102311138, guid: 87ecfdb15ed7328499f20d1de328ee37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258069990102311138, guid: 87ecfdb15ed7328499f20d1de328ee37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258069990102311138, guid: 87ecfdb15ed7328499f20d1de328ee37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 87ecfdb15ed7328499f20d1de328ee37, type: 3}
 --- !u!1 &502956690 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5461052779654786451, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
@@ -845,11 +902,12 @@ MonoBehaviour:
   - {fileID: 2147077465}
   - {fileID: 2038242298}
   - {fileID: 417620637}
+  hasGrenades: 0
+  grenadeObj: {fileID: 8177521444238639947, guid: 69d08a990f19a4d4e8ff3933a30b3127, type: 3}
   followCamera: {fileID: 963194227}
   ammo: 0
   coin: 0
   health: 100
-  hasGrenades: 0
   maxAmmo: 999
   maxCoin: 99999
   maxHealth: 100
