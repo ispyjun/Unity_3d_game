@@ -13,7 +13,9 @@ public class Enemy : MonoBehaviour
     public bool isChase;
     public bool isAttack = false;
     public BoxCollider meleeArea;
+    public GameObject bullet;
 
+    MeshRenderer[] meshs;
     Rigidbody rigid;
     BoxCollider boxCollider;
     Material mat;
@@ -27,6 +29,7 @@ public class Enemy : MonoBehaviour
         mat = GetComponentInChildren<MeshRenderer>().material;
         nav = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
+        meshs = GetComponentsInChildren<MeshRenderer>();
 
         Invoke("ChaseStart", 2);
     }
@@ -72,6 +75,8 @@ public class Enemy : MonoBehaviour
                 targetRange = 12f;
                 break;
             case Type.C:
+                targetRadius = 0.5f;
+                targetRange = 25f;
                 break;
         }
 
@@ -111,6 +116,12 @@ public class Enemy : MonoBehaviour
                 yield return new WaitForSeconds(2f);
                 break;
             case Type.C:
+                yield return new WaitForSeconds(0.5f);
+                GameObject instantBullet = Instantiate(bullet, transform.position, transform.rotation);
+                Rigidbody rigidBullet = instantBullet.GetComponent<Rigidbody>();
+                rigidBullet.velocity = transform.forward * 20;
+
+                yield return new WaitForSeconds(2f);
                 break;
         }
 
@@ -154,16 +165,28 @@ public class Enemy : MonoBehaviour
 
     IEnumerator OnDamage(Vector3 reactVec, bool isGrenade)
     {
-        mat.color = Color.red;
+        //mat.color = Color.red;
+        foreach (MeshRenderer mesh in meshs)
+        {
+            mesh.material.color = Color.red;
+        }
         yield return new WaitForSeconds(0.1f);
 
         if(curHealth > 0)
         {
-            mat.color = Color.white;
+            //mat.color = Color.white;
+            foreach (MeshRenderer mesh in meshs)
+            {
+                mesh.material.color = Color.white;
+            }
         }
         else
         {
-            mat.color = Color.grey;
+            //mat.color = Color.grey;
+            foreach (MeshRenderer mesh in meshs)
+            {
+                mesh.material.color = Color.grey;
+            }
             gameObject.layer = 14;
             isChase = false;
             nav.enabled = false;
