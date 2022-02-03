@@ -60,12 +60,13 @@
     <Compile Include="Assets\Scripts\Grenade.cs" />
     <Compile Include="Assets\Scripts\Weapon.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\Missile.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
     <Compile Include="Assets\QuarterView 3D Action BE5\ReadMe\Scripts\ReadmeBE5.cs" />
     <Compile Include="Assets\Scripts\Follow.cs" />
     <Compile Include="Assets\Scripts\Orbit.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
-    <Compile Include="Assets\Scripts\Missile.cs" />
+    <Compile Include="Assets\Scripts\BossMissile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
