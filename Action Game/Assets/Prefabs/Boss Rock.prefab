@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 5447781209911154909}
   - component: {fileID: 5447781209911154908}
   - component: {fileID: 5447781209911154907}
+  - component: {fileID: 1199518278597694041}
   m_Layer: 15
   m_Name: Boss Rock
   m_TagString: EnemyBullet
@@ -139,7 +140,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4442964479227070860}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 4
@@ -159,3 +160,16 @@ MonoBehaviour:
   damage: 30
   isMelee: 0
   isRock: 1
+--- !u!135 &1199518278597694041
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4442964479227070860}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4
+  m_Center: {x: 0, y: 0, z: 0}
