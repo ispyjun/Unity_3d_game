@@ -9,12 +9,14 @@ public class Enemy : MonoBehaviour
     public Type enemyType;
     public int maxHealth;
     public int curHealth;
+    public int score;
     public Transform target;
     public bool isChase;
     public bool isAttack;
     public bool isDead;
     public BoxCollider meleeArea;
     public GameObject bullet;
+    public GameObject[] coins;
 
     public MeshRenderer[] meshs;
     public Rigidbody rigid;
@@ -197,6 +199,10 @@ public class Enemy : MonoBehaviour
             isChase = false;
             nav.enabled = false;
             anim.SetTrigger("doDie");
+            Player player = target.GetComponent<Player>();
+            player.score += score;
+            int ranCoin = Random.Range(0, 3);
+            Instantiate(coins[ranCoin], transform.position, Quaternion.identity);
 
             if (isGrenade)
             {
@@ -214,8 +220,7 @@ public class Enemy : MonoBehaviour
                 rigid.AddForce(reactVec * 5, ForceMode.Impulse);
             }
 
-            if (enemyType != Type.D)
-                Destroy(gameObject, 4);
+             Destroy(gameObject, 4);
         }
     }
 }
