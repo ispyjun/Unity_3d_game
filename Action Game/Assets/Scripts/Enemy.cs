@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     public int maxHealth;
     public int curHealth;
     public int score;
+
+    public GameManager manager;
     public Transform target;
     public bool isChase;
     public bool isAttack;
@@ -143,7 +145,7 @@ public class Enemy : MonoBehaviour
         FreezeVelocity();
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerExit(Collider other)
     {
         if(other.tag == "Melee")
         {
@@ -199,10 +201,27 @@ public class Enemy : MonoBehaviour
             isChase = false;
             nav.enabled = false;
             anim.SetTrigger("doDie");
+
             Player player = target.GetComponent<Player>();
             player.score += score;
             int ranCoin = Random.Range(0, 3);
             Instantiate(coins[ranCoin], transform.position, Quaternion.identity);
+
+            switch (enemyType)
+            {
+                case Type.A:
+                    manager.enemyCntA--;
+                    break;
+                case Type.B:
+                    manager.enemyCntB--;
+                    break;
+                case Type.C:
+                    manager.enemyCntC--;
+                    break;
+                case Type.D:
+                    manager.enemyCntD--;
+                    break;
+            }
 
             if (isGrenade)
             {

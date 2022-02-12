@@ -462,7 +462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   damage: 40
-  rate: 0.7
+  rate: 0.4
   maxAmmo: 0
   curAmmo: 0
   meleeArea: {fileID: 81860548}
@@ -24413,12 +24413,13 @@ MonoBehaviour:
   startZone: {fileID: 1930016548}
   player: {fileID: 502956691}
   boss: {fileID: 0}
-  stage: 10
+  stage: 0
   playTime: 0
   isBattle: 0
   enemyCntA: 0
   enemyCntB: 0
   enemyCntC: 0
+  enemyCntD: 0
   enemyZones:
   - {fileID: 1287539499}
   - {fileID: 266971557}
