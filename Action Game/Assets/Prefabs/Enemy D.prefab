@@ -244,13 +244,17 @@ MonoBehaviour:
   maxHealth: 600
   curHealth: 600
   score: 10000
+  manager: {fileID: 0}
   target: {fileID: 0}
   isChase: 0
   isAttack: 0
   isDead: 0
   meleeArea: {fileID: 25537318412086724}
   bullet: {fileID: 4442964479227070860, guid: 1817010c3232d324ab57577bf0ea3fac, type: 3}
-  coins: []
+  coins:
+  - {fileID: 4848367911529918707, guid: 3984b0fed5ecbf541aa502a3689b4ef1, type: 3}
+  - {fileID: 322529291654656660, guid: bfd76c05a17a7854898bbcf9e2ea425f, type: 3}
+  - {fileID: 6020306931578075702, guid: 09c11d71533ef0f4e8858b989e074db4, type: 3}
   meshs: []
   rigid: {fileID: 0}
   boxCollider: {fileID: 0}

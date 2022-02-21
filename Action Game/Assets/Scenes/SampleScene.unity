@@ -462,7 +462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   damage: 40
-  rate: 0.4
+  rate: 0.7
   maxAmmo: 0
   curAmmo: 0
   meleeArea: {fileID: 81860548}
@@ -1238,7 +1238,6 @@ GameObject:
   - component: {fileID: 266971561}
   - component: {fileID: 266971560}
   - component: {fileID: 266971559}
-  - component: {fileID: 266971558}
   m_Layer: 0
   m_Name: Spawn Zone
   m_TagString: Untagged
@@ -1260,19 +1259,6 @@ Transform:
   m_Father: {fileID: 1421766311}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &266971558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 266971556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13b060ae504af944fb0bd3af62675fcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 980731385}
 --- !u!135 &266971559
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -19173,7 +19159,6 @@ GameObject:
   - component: {fileID: 926475912}
   - component: {fileID: 926475911}
   - component: {fileID: 926475910}
-  - component: {fileID: 926475909}
   m_Layer: 0
   m_Name: Spawn Zone
   m_TagString: Untagged
@@ -19195,19 +19180,6 @@ Transform:
   m_Father: {fileID: 1421766311}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &926475909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 926475907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13b060ae504af944fb0bd3af62675fcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 980731385}
 --- !u!135 &926475910
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -24413,7 +24385,7 @@ MonoBehaviour:
   startZone: {fileID: 1930016548}
   player: {fileID: 502956691}
   boss: {fileID: 0}
-  stage: 0
+  stage: 1
   playTime: 0
   isBattle: 0
   enemyCntA: 0
@@ -35284,7 +35256,6 @@ GameObject:
   - component: {fileID: 1287539503}
   - component: {fileID: 1287539502}
   - component: {fileID: 1287539501}
-  - component: {fileID: 1287539500}
   m_Layer: 0
   m_Name: Spawn Zone
   m_TagString: Untagged
@@ -35306,19 +35277,6 @@ Transform:
   m_Father: {fileID: 1421766311}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1287539500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287539498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13b060ae504af944fb0bd3af62675fcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 980731385}
 --- !u!135 &1287539501
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -53890,7 +53848,6 @@ GameObject:
   - component: {fileID: 1885282151}
   - component: {fileID: 1885282150}
   - component: {fileID: 1885282149}
-  - component: {fileID: 1885282148}
   m_Layer: 0
   m_Name: Spawn Zone
   m_TagString: Untagged
@@ -53912,19 +53869,6 @@ Transform:
   m_Father: {fileID: 1421766311}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1885282148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1885282146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13b060ae504af944fb0bd3af62675fcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 980731385}
 --- !u!135 &1885282149
 SphereCollider:
   m_ObjectHideFlags: 0

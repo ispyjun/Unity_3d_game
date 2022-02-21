@@ -191,6 +191,8 @@ public class Enemy : MonoBehaviour
         }
         else
         {
+            if (isDead)
+                yield break;
             //mat.color = Color.grey;
             foreach (MeshRenderer mesh in meshs)
             {
@@ -200,6 +202,7 @@ public class Enemy : MonoBehaviour
             isDead = true;
             isChase = false;
             nav.enabled = false;
+            meleeArea.enabled = false;
             anim.SetTrigger("doDie");
 
             Player player = target.GetComponent<Player>();

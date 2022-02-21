@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour
     {
         if (stage % 5 == 0)
         {
+            enemyCntD++;
             GameObject instantEnemy = Instantiate(enemies[3], enemyZones[0].position, enemyZones[0].rotation);
             Enemy enemy = instantEnemy.GetComponent<Enemy>();
             enemy.target = player.transform;
@@ -136,14 +137,16 @@ public class GameManager : MonoBehaviour
                 yield return new WaitForSeconds(4f);
             }
             
-            while (enemyCntA + enemyCntB + enemyCntC + enemyCntD > 0)
-            {
-                yield return null;
-            }
-
-            yield return new WaitForSeconds(4f);
-            StageEnd();
         }
+        while (enemyCntA + enemyCntB + enemyCntC + enemyCntD > 0)
+        {
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(4f);
+
+        boss = null;
+        StageEnd();
     }
 
     void Update()
@@ -186,8 +189,15 @@ public class GameManager : MonoBehaviour
         enemyCTxt.text = enemyCntC.ToString();
 
         //보스 체력 UI
-        if(boss != null)
+        if (boss != null)
+        {
+            bossHealthGroup.anchoredPosition = Vector3.down * 30;
             bossHealthBar.localScale = new Vector3((float)boss.curHealth / boss.maxHealth, 1, 1);
+        }
+        else
+        {
+            bossHealthGroup.anchoredPosition = Vector3.up * 200;
+        }
     }
 }
 
