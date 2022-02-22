@@ -180,6 +180,7 @@ public class Player : MonoBehaviour
             }
         }
     }
+
     void Reload()
     {
         if (equipWeapon == null)
@@ -195,14 +196,19 @@ public class Player : MonoBehaviour
             anim.SetTrigger("doReload");
             isReload = true;
 
-            Invoke("ReloadOut", 3f);
+            Invoke("ReloadOut", 2f);
         }
     }
 
     void ReloadOut()
     {
-        int reAmmo = ammo < equipWeapon.maxAmmo ? ammo : equipWeapon.maxAmmo;
+        /*int reAmmo = ammo < equipWeapon.maxAmmo ? ammo : equipWeapon.maxAmmo;
         equipWeapon.curAmmo = equipWeapon.maxAmmo;
+        ammo -= reAmmo;
+        isReload = false;*/
+
+        int reAmmo = ammo + equipWeapon.curAmmo < equipWeapon.maxAmmo ? ammo : equipWeapon.maxAmmo - equipWeapon.curAmmo;
+        equipWeapon.curAmmo += reAmmo;
         ammo -= reAmmo;
         isReload = false;
     }

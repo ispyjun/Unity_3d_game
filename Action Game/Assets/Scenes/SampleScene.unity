@@ -7189,13 +7189,13 @@ MonoBehaviour:
   hasGrenades: 0
   grenadeObj: {fileID: 8177521444238639947, guid: 69d08a990f19a4d4e8ff3933a30b3127, type: 3}
   followCamera: {fileID: 963194227}
-  ammo: 100
+  ammo: 150
   coin: 5000
-  health: 100
+  health: 200
   score: 0
   maxAmmo: 999
   maxCoin: 99999
-  maxHealth: 100
+  maxHealth: 200
   maxHasGrenades: 4
   equipWeapon: {fileID: 0}
 --- !u!136 &502956692
