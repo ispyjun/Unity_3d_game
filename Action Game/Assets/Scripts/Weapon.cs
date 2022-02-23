@@ -50,7 +50,7 @@ public class Weapon : MonoBehaviour
         //1. √—æÀ πﬂªÁ
         GameObject intantBullet = Instantiate(bullet, bulletPos.position, bulletPos.rotation);
         Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();
-        bulletRigid.velocity = bulletPos.forward * 50;
+        bulletRigid.velocity = bulletPos.forward * 70;
         yield return null;
 
         //2. ≈∫«« πË√‚

@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public int hasGrenades;
     public GameObject grenadeObj;
     public Camera followCamera;
+    public GameManager manager;
 
     public int ammo;
     public int coin;
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
     bool sDown2;
     bool sDown3;
 
+    bool isDead;
     bool isJump;
     bool isDodge;
     bool isSwap;
@@ -191,7 +193,7 @@ public class Player : MonoBehaviour
         if (ammo == 0)
             return;
 
-        if(rDown && !isJump && !isDodge && !isSwap && isFireReady)
+        if(rDown && !isJump && !isDodge && !isSwap && isFireReady && !isDead)
         {
             anim.SetTrigger("doReload");
             isReload = true;
@@ -215,7 +217,7 @@ public class Player : MonoBehaviour
 
     void Dodge()
     {
-        if (jDown && moveVec != Vector3.zero && !isJump && !isDodge && !isSwap)
+        if (jDown && moveVec != Vector3.zero && !isJump && !isDodge && !isSwap && !isDead)
         {
             dodgeVec = moveVec;
             speed *= 2;
@@ -247,7 +249,7 @@ public class Player : MonoBehaviour
         if (sDown2) weaponIndex = 1;
         if (sDown3) weaponIndex = 2;
 
-        if ((sDown1 || sDown2 || sDown3) && !isJump && !isDodge)
+        if ((sDown1 || sDown2 || sDown3) && !isJump && !isDodge && !isDead)
         {
             if (equipWeapon != null)
             {
@@ -270,7 +272,7 @@ public class Player : MonoBehaviour
 
     void Interation()
     {
-        if(iDown && nearObject != null && !isJump && !isDodge)
+        if(iDown && nearObject != null && !isJump && !isDodge && !isDead)
         {
             if(nearObject.tag == "Weapon")
             {
@@ -369,6 +371,11 @@ public class Player : MonoBehaviour
         }
         if (isBossAtk)
             rigid.AddForce(transform.forward * -25, ForceMode.Impulse);
+
+        // »ç¸Á
+        if (health <= 0 && !isDead)
+            OnDie();
+
         yield return new WaitForSeconds(1f);
 
         isDamage = false;
@@ -379,6 +386,14 @@ public class Player : MonoBehaviour
         if (isBossAtk)
             rigid.velocity = Vector3.zero;
     }
+
+    void OnDie()
+    {
+        anim.SetTrigger("doDie");
+        isDead = true;
+        manager.GameOver();
+    }
+
     void OnTriggerStay(Collider other)
     {
         if (other.tag == "Weapon" || other.tag == "Shop")

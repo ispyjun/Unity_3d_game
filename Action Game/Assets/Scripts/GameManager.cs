@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject menuPanel;
     public GameObject gamePanel;
+    public GameObject overPanel;
 
     public Text maxScoreTxt;
     public Text scoreTxt;
@@ -46,6 +48,8 @@ public class GameManager : MonoBehaviour
     public Text enemyCTxt;
     public RectTransform bossHealthGroup;
     public RectTransform bossHealthBar;
+    public Text curScoreText;
+    public Text bestScoreText;
 
     void Awake()
     {
@@ -62,6 +66,24 @@ public class GameManager : MonoBehaviour
         gamePanel.SetActive(true);
 
         player.gameObject.SetActive(true);
+    }
+    public void GameOver()
+    {
+        gamePanel.SetActive(false);
+        overPanel.SetActive(false);
+        curScoreText.text = scoreTxt.text;
+
+        int maxScore = PlayerPrefs.GetInt("MaxScore");
+        if(player.score > maxScore)
+        {
+            bestScoreText.gameObject.SetActive(true);
+            PlayerPrefs.SetInt("MaxScore", player.score);
+        }
+    }
+
+    public void ReStart()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public void StageStart()
@@ -154,6 +176,7 @@ public class GameManager : MonoBehaviour
         if (isBattle)
             playTime += Time.deltaTime;
     }
+
     void LateUpdate()
     {
         //»ó´Ü UI
