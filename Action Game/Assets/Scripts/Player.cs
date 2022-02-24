@@ -13,6 +13,12 @@ public class Player : MonoBehaviour
     public Camera followCamera;
     public GameManager manager;
 
+    public AudioSource jumpSound;
+    public AudioSource dodgeSound;
+    public AudioSource shootSound;
+    public AudioSource meleeSound;
+    public AudioSource dieSound;
+
     public int ammo;
     public int coin;
     public int health;
@@ -64,7 +70,7 @@ public class Player : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         meshs = GetComponentsInChildren<MeshRenderer>();
 
-        PlayerPrefs.SetInt("MaxScore", 112500);
+        //PlayerPrefs.SetInt("MaxScore", 0);
     }
 
     void Update()
@@ -225,6 +231,7 @@ public class Player : MonoBehaviour
             anim.SetTrigger("doDodge");
             isDodge = true;
 
+            dodgeSound.Play();
             Invoke("DodgeOut", 0.4f);
         }
     }
@@ -390,6 +397,7 @@ public class Player : MonoBehaviour
     void OnDie()
     {
         anim.SetTrigger("doDie");
+        dieSound.Play();
         isDead = true;
         manager.GameOver();
     }

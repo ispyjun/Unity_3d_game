@@ -18,22 +18,28 @@ public class Weapon : MonoBehaviour
     public Transform bulletCasePos;
     public GameObject bulletCase;
 
+    public AudioSource shootSound;
+    public AudioSource meleeSound;
+
     public void Use()
     {
         if(type == Type.Melee)
         {
             StopCoroutine("Swing");
+            meleeSound.Play();
             StartCoroutine("Swing");
         }
         if (type == Type.Range && curAmmo > 0)
         {
             curAmmo--;
+            shootSound.Play();
             StartCoroutine("Shot");
         }
     }
 
     IEnumerator Swing()
     {
+        
         //1
         yield return new WaitForSeconds(0.5f); //0.1초 대기
         meleeArea.enabled = true;
@@ -47,6 +53,8 @@ public class Weapon : MonoBehaviour
 
     IEnumerator Shot()
     {
+
+        
         //1. 총알 발사
         GameObject intantBullet = Instantiate(bullet, bulletPos.position, bulletPos.rotation);
         Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();

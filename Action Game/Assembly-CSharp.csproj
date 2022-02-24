@@ -74,6 +74,9 @@
     <Compile Include="Assets\Scripts\StartZone.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\ElectroRockNewPack\Giustat- ElectroRockTrip Compilation1- 24bit 48Hz\Please read this.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.15f2\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

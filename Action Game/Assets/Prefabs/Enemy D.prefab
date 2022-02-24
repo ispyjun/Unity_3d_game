@@ -241,8 +241,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 3
-  maxHealth: 600
-  curHealth: 600
+  maxHealth: 1200
+  curHealth: 1200
   score: 10000
   manager: {fileID: 0}
   target: {fileID: 0}

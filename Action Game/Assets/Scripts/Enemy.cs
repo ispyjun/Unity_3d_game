@@ -222,6 +222,7 @@ public class Enemy : MonoBehaviour
                     manager.enemyCntC--;
                     break;
                 case Type.D:
+                    player.coin += 6000;
                     manager.enemyCntD--;
                     break;
             }

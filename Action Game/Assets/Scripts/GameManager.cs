@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public GameObject menuPanel;
     public GameObject gamePanel;
     public GameObject overPanel;
+    public GameObject howPanel;
 
     public Text maxScoreTxt;
     public Text scoreTxt;
@@ -51,14 +52,23 @@ public class GameManager : MonoBehaviour
     public Text curScoreText;
     public Text bestScoreText;
 
+    public AudioSource bgmSound;
+
     void Awake()
     {
         enemyList = new List<int>();
         maxScoreTxt.text = string.Format("{0:n0}", PlayerPrefs.GetInt("MaxScore"));
+
+        if (PlayerPrefs.HasKey("MaxScore"))
+        {
+            PlayerPrefs.SetInt("maxScore", 0);
+        }
     }
 
     public void GameStart()
     {
+        bgmSound.Play();
+
         menuCam.SetActive(false);
         gameCam.SetActive(true);
 
@@ -70,10 +80,14 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gamePanel.SetActive(false);
-        overPanel.SetActive(false);
+        overPanel.SetActive(true);
         curScoreText.text = scoreTxt.text;
 
         int maxScore = PlayerPrefs.GetInt("MaxScore");
+        /*if (player.score == 0)
+        {
+            
+        }*/
         if(player.score > maxScore)
         {
             bestScoreText.gameObject.SetActive(true);
@@ -84,6 +98,14 @@ public class GameManager : MonoBehaviour
     public void ReStart()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void HowToPlay()
+    {
+        menuPanel.SetActive(false);
+        gamePanel.SetActive(false);
+        overPanel.SetActive(false);
+        howPanel.SetActive(true);
     }
 
     public void StageStart()
