@@ -404,6 +404,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
+        Debug.Log(nearObject);
         if (other.tag == "Weapon" || other.tag == "Shop")
             nearObject = other.gameObject;
     }
